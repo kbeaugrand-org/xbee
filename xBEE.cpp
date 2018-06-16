@@ -91,6 +91,11 @@ bool xBEE::Available()
 
 String xBEE::Read()
 {
+  if(!Available())
+  {
+    return "";
+  }
+  
   return Serial.readString();
 }
 
