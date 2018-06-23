@@ -1,5 +1,5 @@
-#include "Arduino.h"
-#include "xBEE.h"
+#include <Arduino.h>
+#include <xBEE.h>
 
 xBEE::xBEE()
 {
@@ -22,6 +22,7 @@ xBEE::xBEE(String ni, String ky)
 void xBEE::AutoConfigure()
 {
   startCommandMode();
+
   if (!(configureAndCheckResponse("RE", "", "OK") && 
     configureAndCheckResponse("NI", _ni, "OK") &&
     configureAndCheckResponse("KY", _ky , "OK") &&

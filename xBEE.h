@@ -4,7 +4,7 @@
   Released into the public domain.
 */
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 #ifndef xBEE_h
 #define xBEE_h
@@ -14,6 +14,7 @@ class xBEE {
     xBEE();
     xBEE(String ni);
     xBEE(String ni, String ky);
+
     void AutoConfigure();
     bool IsAssociated();
 
@@ -27,6 +28,7 @@ class xBEE {
     
     bool Available();
     String Read();
+
   private:
     String _ni;
     String _ky;
