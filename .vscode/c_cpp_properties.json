@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\beaugrandk\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.6.18\\cores\\arduino"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "C:\\Users\\beaugrandk\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.6.18\\cores\\arduino"
+                ]
+            },
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -12,7 +12,7 @@ This is a library helping us to develop IoT devices that would communicate with 
 
 ### Using the coding sample
 
-``` 
+```cpp
 #include <xBEE.h>
 
 xBEE xbee = xBEE("255C");
@@ -34,7 +34,7 @@ void loop() {
 
 #### Configure the network manually
 
-```
+```cpp
 #include <xBEE.h>
 
 xBEE xbee = xBEE();
