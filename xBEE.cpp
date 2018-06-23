@@ -10,7 +10,7 @@ xBEE::xBEE()
 xBEE::xBEE(String ni)
 {
   _ni = ni;
-  _ky = "0";
+  _ky = "";
 }
 
 xBEE::xBEE(String ni, String ky)
@@ -23,8 +23,20 @@ void xBEE::AutoConfigure()
 {
   startCommandMode();
 
+  String ee;
+
+  if ( _ky.length() == 0 )
+  {
+    ee = "0";    
+  }
+  else
+  {
+     ee = "1";
+  }
+
   if (!(configureAndCheckResponse("RE", "", "OK") && 
     configureAndCheckResponse("NI", _ni, "OK") &&
+    configureAndCheckResponse("EE", ee , "OK") &&
     configureAndCheckResponse("KY", _ky , "OK") &&
     configureAndCheckResponse("A1", "7", "OK") &&
     configureAndCheckResponse("NO", "1", "OK") &&

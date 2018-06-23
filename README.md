@@ -71,3 +71,10 @@ void loop() {
   Serial.print(input);
 }
 ```
+
+## Documentation
+### Constructors
+
+* ```xBEE()```: Default constructor without any parameters
+* ```xBEE(String ni)```: Constructor with Node Identifier parameter
+* ```xBEE(String ni, String ky)```: Constructor with Node identifier and AES encryption Key
