@@ -162,12 +162,7 @@ bool xBEE::Available()
   @retruns The message content for the xBEE module.
 */
 String xBEE::Read()
-{
-  if(!Available())
-  {
-    return "";
-  }
-  
+{  
   return Serial.readString();
 }
 
@@ -188,7 +183,9 @@ void xBEE::endCommandMode(){
 String xBEE::sendConfiguration(String configuration, String value) {
   Serial.println("AT" + configuration + " " + value);
   
-  while (!Serial.available()) { }
+  while (!Serial.available()) {
+    delay(100);
+   }
 
   return Serial.readString();
 }
