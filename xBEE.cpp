@@ -1,24 +1,39 @@
 #include <Arduino.h>
 #include <xBEE.h>
 
+/**
+  Creates a new instance of the xBEE class.
+*/
 xBEE::xBEE()
 {
   _ni = "";
   _ky = "0";
 }
 
+/**
+  Creates a new instance of the xBEE class.
+  @ni string reprensenting the Node Identifier.
+*/
 xBEE::xBEE(String ni)
 {
   _ni = ni;
   _ky = "";
 }
 
+/**
+  Creates a new instance of the xBEE class.
+  @ni string reprensenting the Node Identifier.
+  @ky string representing the AES Encryption Key.
+*/
 xBEE::xBEE(String ni, String ky)
 {
   _ni = ni;
   _ky = ky;
 }
 
+/**
+  Configures the xBEE module to auto configure and auto-associate to a coordinator.
+*/
 void xBEE::AutoConfigure()
 {
   startCommandMode();
@@ -53,30 +68,56 @@ void xBEE::AutoConfigure()
    endCommandMode();
 }
 
+/**
+  Checks if the xBee is associated to a network.
+  @returns True if associated, false otherwise.
+*/
 bool xBEE::IsAssociated(){
   return configureAndCheckResponse("AI", "", "0");
 }
 
+/**
+  Starts the configuration of xBEE module.
+  @returns True if configuration starts, false otherwise.
+*/
 bool xBEE::Configure()
 {
   startCommandMode();
 }
 
+/**
+  Writes the configuration to the xBEE module and finishes the configuration of xBEE module.
+  @returns True if configuration ends, false otherwise.
+*/
 bool xBEE::Start()
 {
   endCommandMode();
 }
-
+/**
+  Sets the value of the xBEE register.
+  @configuration the register name (e.g: DH, DL).
+  @value the register value in hex.
+  @returns True if configuration was set, false otherwise.
+*/
 bool xBEE::Set(String configuration, String value)
 {
   configureAndCheckResponse(configuration, value, "OK");
 }
-
+/**
+  Gets the value of the xBEE register.
+  @configuration the register name (e.g: DH, DL).
+  @returns The register value in hex.
+*/
 String xBEE::Get(String configuration)
 {
   sendConfiguration(configuration, "");
 }
-
+/**
+  Sends a message to a remote device specified by DH, DL.
+  @dl The Destination Low of the remote device.
+  @dh The Destination High of the remote device.
+  @content The message content
+*/
 void xBEE::Send(String dl, String dh, String content)
 {
   startCommandMode();
@@ -86,7 +127,11 @@ void xBEE::Send(String dl, String dh, String content)
   
   Serial.println(content);
 }
-
+/**
+  Sends a message to a remote device specified by MY.
+  @dl The MY of the remote device.
+  @content The message content
+*/
 void xBEE::Send(String dl, String content)
 {    
   startCommandMode();
@@ -96,12 +141,26 @@ void xBEE::Send(String dl, String content)
   
   Serial.println(content);
 }
-
+/**
+  Sends a message.
+  @content The message content
+*/
+void xBEE::Send(String content)
+{    
+  Serial.println(content);
+}
+/**
+  Checks if a message is availiable on the xBEE module.
+  @retruns True if a message is availiable, False otherwise.
+*/
 bool xBEE::Available()
 {
   return Serial.available();
 }
-
+/**
+  Reads
+  @retruns The message content for the xBEE module.
+*/
 String xBEE::Read()
 {
   if(!Available())
@@ -122,6 +181,7 @@ void xBEE::startCommandMode(){
 }
 
 void xBEE::endCommandMode(){
+  configureAndCheckResponse("WR", "", "OK") &&
   configureAndCheckResponse("CN", "", "OK");
 }
 
