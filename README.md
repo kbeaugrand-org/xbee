@@ -95,5 +95,5 @@ void loop() {
 * ``Send(String dl, String content)``: Sends a message to a remote device specified by MY.
 * ``Send(String content)``: Sends a message the de configured destination device.
 * ``Available()``: Checks if a message is availiable on the xBEE module.
-* ``Send(String content)``: Reads the availiable message.
+* ``Read(String content)``: Reads the availiable message.
 
